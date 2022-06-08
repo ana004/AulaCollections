@@ -1,39 +1,69 @@
-import java.util.*; 
+import java.util.*;
 
 public class StringLista {
-  
-ArrayList<String> lista = new ArrayList<String>();
+    //falta criar o Arraylist e o VectStr
+    //o código abaixo fica dentro das chaves dps de criar Array e Vect
+    List<String> lista; // arraylist criado
+    Vector<String> vectStr;
 
+    public StringLista() {
+        this.lista = new ArrayList<String>();
+        this.vectStr = new Vector<String>(lista);
+    }
 
-  // Para string!!
-public void adicionarElementoNaPosicao(int posicao, String elemento)
-  {
-   lista.add(posicao, elemento);
-  }
+    public void adcPosicaoEscolhida(int posicao, String elemento) {
+        vectStr.add(posicao, elemento);
+    }
 
-public void adicionarElementoUltimaPosicao(String elemento){
-  lista.add(elemento);
-}
+    public void adcUltimaPosicao(String elemento) {
+        this.vectStr.add(elemento);
+    }
 
-public void removerElementoNaPosicao(int posicao){
-  lista.remove (posicao);
-}
+    public void removerElemento(String elemento) {
+        vectStr.remove(buscarPosicao(elemento));
+    }
 
-public String encontrarElementoNaPosicao (int posicao)
-  {
-    return lista.get(posicao);
-  }
+    public int buscarPosicao(String elemento) {
 
+        for (int i = 0; i < vectStr.size(); i++) {
+            if (vectStr.elementAt(i).equals(elemento))
+                return i;
+        }
+        return -1;
+    }
 
-public int encontrarEmQualPosicaoEstaOElemento(String elemento)
-  {
-int indexOf = lista.indexOf(elemento);
+    public String buscarElemento(int posicao) {
+        return this.vectStr.get(posicao);
+    }
 
-return indexOf;
- }
+    public List ordernarAsc() {
+        Vector novoVectStr = new Vector();
+        novoVectStr = (Vector) vectStr.clone();
 
-public int tamanho()  {
-  return lista.size();
-}
+        Collections.sort(novoVectStr);
+        return novoVectStr;
+    }
+
+    public List ordernarDesc() {
+        Vector novoVectStr = new Vector();
+        novoVectStr = (Vector) vectStr.clone();
+
+        Collections.reverse(novoVectStr);
+        return novoVectStr;
+    }
+
+    public int tamanho() {
+        return vectStr.size();
+    }
+
+    public void getStringLista() {
+        Iterator<String> lista = vectStr.iterator();
+
+        while (lista.hasNext()) {
+            String novaLista = lista.next();
+            System.out.println(novaLista);
+        }
+    }
+
 }
 

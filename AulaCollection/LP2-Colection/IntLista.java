@@ -1,17 +1,15 @@
 import java.util.*;
 
-
 public class IntLista {
-    List<Integer> lista; //arraylist criado
-    Vector<Integer> vectStr; //classe Vector contém mais funções que List, e a lista está dentro de Vector
-
+    List<Integer> lista; // arraylist criado
+    Vector<Integer> vectStr; // classe Vector contém mais funções que List, e a lista está dentro de Vector
 
     public IntLista() {
         this.lista = new ArrayList<Integer>();
         this.vectStr = new Vector<Integer>(lista);
     }
 
-    public void adcPosicaoEscolhida(int elemento, int posicao) {
+    public void adcPosicaoEscolhida(int posicao, int elemento) {
         vectStr.add(posicao, elemento);
     }
 
@@ -19,12 +17,11 @@ public class IntLista {
         this.vectStr.add(elemento);
     }
 
-    public void removerElemento(int elemento) {
+    public void removerElemento(int elemento) { // passa o elemento, e por meio do buscarPosição ele remove o elemento na posição do elemento
         vectStr.remove(buscarPosicao(elemento));
     }
 
     public int buscarPosicao(int elemento) {
-
         for (int i = 0; i < vectStr.size(); i++) {
             if (vectStr.elementAt(i) == elemento)
                 return i;
@@ -37,13 +34,19 @@ public class IntLista {
     }
 
     public List ordernarAsc() {
-        Collections.sort(vectStr);
-        return vectStr;
+        Vector novoVectStr = new Vector();
+        novoVectStr = (Vector) vectStr.clone();
+
+        Collections.sort(novoVectStr);
+        return novoVectStr;
     }
 
     public List ordernarDesc() {
-        Collections.reverse(vectStr);
-        return vectStr;
+        Vector novoVectStr = new Vector();
+        novoVectStr = (Vector) vectStr.clone();
+
+        Collections.reverse(novoVectStr);
+        return novoVectStr;
     }
 
     public int tamanho() {
